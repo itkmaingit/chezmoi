@@ -22,3 +22,4 @@ packages:
 - name: nodejs/node@v25.2.1
 - name: twpayne/chezmoi@v2.68.0
 - name: x-motemen/ghq@v1.8.0
+- name: tldr-pages/tlrc@v1.12.0

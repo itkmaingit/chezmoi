@@ -15,17 +15,22 @@ abbr -S g='git' > /dev/null
 abbr -S rel='source ~/.zshrc' > /dev/null
 abbr -S d='docker' > /dev/null
 abbr -S a='aqua' > /dev/null
-abbr -S ai='aqua i -a' > /dev/null
-abbr -S ag='aqua g -g -i' > /dev/null
 abbr -S c='chezmoi' > /dev/null
 abbr -S --force cd='z' > /dev/null
 abbr -S update='bash ~/scripts/chezmoi-sync.sh' > /dev/null
+abbr -S --force  as='chezmoi re-add ~/.config/aquaproj-aqua/aqua.yaml' > /dev/null
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 edit() {
     chezmoi edit "$@" || return 1
     chezmoi apply
+}
+
+ag() {
+	aqua g -g -i
+	chezmoi re-add ~/.config/aquaproj-aqua/aqua.yaml
+	aqua i -a
 }
 
 repo() {
