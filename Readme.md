@@ -46,6 +46,7 @@ aqua i -a
 
 ### cronの初期設定
 
-
-
-### GitHub CLIのインストール
+```bash
+crontab -e
+*/15 * * * * bash $HOME/.local/share/chezmoi/scripts/chezmoi-sync.sh
+```
