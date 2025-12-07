@@ -1,11 +1,11 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 set -euo pipefail
 
 LOGFILE="$HOME/.cache/chezmoi-sync.log"
 CHEZDIR="$HOME/.local/share/chezmoi"
 
-exec > >(tee -a "$LOGFILE") 2>&1
+exec >> "$LOGFILE" 2>&1
 
 echo "=== $(date '+%F %T') START ==="
 
@@ -19,7 +19,7 @@ chezmoi update --verbose || {
     exit 1
 }
 
-chezmoi cd
+cd ~/.local/share/chezmoi
 
 # commit only if something changed
 echo "[2] git commit"

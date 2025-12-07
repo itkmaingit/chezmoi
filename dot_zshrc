@@ -23,7 +23,7 @@ abbr -S --force cd='z' > /dev/null
 
 repo() {
     local action="${1:-list}"
-    
+
     case "$action" in
         "list"|"l")
             # List all repositories with fzf selection
@@ -155,3 +155,27 @@ if [[ -f "$CHEZ_LOG" ]]; then
     fi
 fi
 
+# --- fzf history search (Ctrl+r) ---
+if command -v fzf >/dev/null; then
+  # Ctrl+r → fzf history
+  fzf-history-widget() {
+    local selected
+    selected=$(fc -l 1 | fzf --height 40% --tac --query="$LBUFFER" | sed 's/^[ 0-9]*//')
+    if [[ -n "$selected" ]]; then
+      LBUFFER="$selected"
+    fi
+    zle reset-prompt
+  }
+  zle -N fzf-history-widget
+  bindkey '^R' fzf-history-widget
+fi
+
+# --- better history settings ---
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+
+setopt hist_ignore_dups       # 同じコマンド連続は無視
+setopt hist_ignore_all_dups   # すでにある履歴は消して最新のみ
+setopt share_history          # 別ターミナル間で履歴共有
+setopt inc_append_history     # コマンド実行時に即書き込み
