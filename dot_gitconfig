@@ -4,8 +4,6 @@
 [user]
 	name = dango
 	email = itkmain.git@gmail.com
-[url "git@github.com:"]
-    insteadOf = https://github.com/
 [merge]
 	ff = false
 [alias]
