@@ -1,0 +1,76 @@
+# `sheldon` configuration file
+# ----------------------------
+#
+# You can modify this file directly or you can use one of the following
+# `sheldon` commands which are provided to assist in editing the config file:
+#
+# - `sheldon add` to add a new plugin to the config file
+# - `sheldon edit` to open up the config file in the default editor
+# - `sheldon remove` to remove a plugin from the config file
+#
+# See the documentation for more https://github.com/rossmacarthur/sheldon#readme
+
+
+# For example:
+#
+# [plugins.base16]
+# github = "chriskempson/base16-shell"
+
+shell = 'zsh'
+
+# powerlevel10k
+[plugins.powerlevel10k]
+github = "romkatv/powerlevel10k"
+
+# autosuggestions
+[plugins.autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+
+# syntax highlighting
+[plugins.syntax]
+github = "zsh-users/zsh-syntax-highlighting"
+
+# completions
+[plugins.completions]
+github = "zsh-users/zsh-completions"
+
+# abbr
+[plugins.abbr]
+github = "olets/zsh-abbr"
+use = ["zsh-abbr.plugin.zsh"]
+
+# ---- Git 関連 ----
+[plugins.git-open]
+github = "paulirish/git-open"
+
+[plugins.forgit]
+github = "wfxr/forgit"
+
+# ---- シェル補完（docker / kubectl / gh / etc） ----
+# zsh-completions で大量に入るが、追加で補完が必要なら以下
+[plugins.docker-completions]
+github = "felixr/docker-zsh-completion"
+
+[plugins.kubectl-completions]
+github = "ahmetb/kubectl-aliases"
+
+[plugins.aqua]
+inline = '''
+# aqua completion を有効化
+eval "$(aqua completion zsh)"
+'''
+
+[plugins.atuin]
+inline = '''
+eval "$(atuin init zsh  --disable-up-arrow)"
+'''
+
+[plugins.zoxide]
+inline = '''
+eval "$(zoxide init zsh)"
+'''
+# ---- 高速 + 多機能な補完（recommended） ----
+[plugins.enhancd]
+github = "b4b4r07/enhancd"
+
+

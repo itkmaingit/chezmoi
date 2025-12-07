@@ -1,0 +1,51 @@
+[core]
+	editor = \"code\" --wait
+	autocrlf = false
+[user]
+	name = dango
+	email = itkmain.git@gmail.com
+[merge]
+	ff = false
+[alias]
+	vacuum = "!f () { git checkout $1; git branch --merged|egrep -v '\\*|developed|master|main|develop'|xargs git branch -d; git fetch --prune; };f"
+	lazy = "!f() { git add -A; git commit -m 'lazy commit'; git push; };f"
+	clean = "!f() { git checkout .; git clean -df .; };f"
+	ss = status -s
+	br = branch
+	brm = branch -m
+	brd = branch -d
+	brdd = branch -D
+	sw = switch
+	swc = switch -c
+	adu = add -u
+	adup = add -u -p
+	adp = add -p
+	ada = add -A
+	cm = commit -m
+	cam = commit -am
+	mg = merge --no-ff
+	mgff = merge --ff
+	cp = cherry-pick
+	firstpush = push --set-upstream
+	log1 = log -1
+	log2 = log -2
+	log3 = log -3
+	logp = log -p
+	logo = log --oneline
+	logn = log --name-status --oneline
+	firstcom = commit --allow-empty -m \"Initial commit\"
+	ph=push
+	cl=clone
+	pl=pull
+	st = stash
+	stp = stash pop
+	stl = stash list
+	stps = stash pop "stash@{0}"
+	su = stash -u
+	co = checkout
+	cancel = reset --soft HEAD^
+	fh = fetch
+[pull]
+	rebase = true
+[push]
+	default = current
