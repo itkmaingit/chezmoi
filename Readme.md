@@ -15,8 +15,8 @@ mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua"
 cd ${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua
 touch "${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua/aqua.yaml"
 export AQUA_GLOBAL_CONFIG=${AQUA_GLOBAL_CONFIG:-}:${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua/aqua.yaml
-aqua g -i -g # chezmoi
-aqua g -g -g # cli/cli[gh]
+aqua g -i -g
+aqua g -i -g
 aqua i -a
 ```
 
