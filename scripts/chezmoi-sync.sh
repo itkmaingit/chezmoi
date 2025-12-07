@@ -19,7 +19,7 @@ chezmoi update --verbose || {
     exit 1
 }
 
-cd ~/.local/share/chezmoi
+cd $CHEZDIR
 
 # commit only if something changed
 echo "[2] git commit"
