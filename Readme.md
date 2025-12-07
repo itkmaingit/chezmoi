@@ -11,6 +11,7 @@ curl -sSfL https://raw.githubusercontent.com/aquaproj/aqua-installer/v4.0.2/aqua
 ### chezmoi & GitHub CLIのインストール
 
 ```bash
+export PATH=${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH
 mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua"
 cd ${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua
 touch "${XDG_CONFIG_HOME:-$HOME/.config}/aquaproj-aqua/aqua.yaml"
