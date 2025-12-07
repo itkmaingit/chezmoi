@@ -19,10 +19,14 @@ abbr -S ai='aqua i -a' > /dev/null
 abbr -S ag='aqua g -g -i' > /dev/null
 abbr -S c='chezmoi' > /dev/null
 abbr -S --force cd='z' > /dev/null
-abbr -S --force vi='nvim' > /dev/null
-abbr -S update='bash ~/scripts/chezmoi-sync.sh'
+abbr -S update='bash ~/scripts/chezmoi-sync.sh' > /dev/null
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+edit() {
+    chezmoi edit "$@" || return 1
+    chezmoi apply
+}
 
 repo() {
     local action="${1:-list}"
