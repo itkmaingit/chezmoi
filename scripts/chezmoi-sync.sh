@@ -19,8 +19,6 @@ chezmoi update --verbose || {
     exit 1
 }
 
-chezmoi re-add ~/.config/aquaproj-aqua/aqua.yaml
-
 cd ~/.local/share/chezmoi
 
 # commit only if something changed
