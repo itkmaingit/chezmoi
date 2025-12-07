@@ -76,10 +76,10 @@ repo() {
                 local selected_repo
                 selected_repo=$(gh repo list --limit 100 --json nameWithOwner --jq '.[].nameWithOwner' | fzf --height=50% --border --preview="gh repo view {} --json description,url,pushedAt --template '{{.description}}\n{{.url}}\nLast updated: {{.pushedAt}}'" --preview-window=down:5:wrap --prompt="Select repository to clone: ")
                 if [[ -n "$selected_repo" ]]; then
-                    ghq get "github.com/$selected_repo"
+                    ghq get -p "github.com/$selected_repo"
                 fi
             else
-                ghq get "$2"
+                ghq get -p "$2"
             fi
             ;;
         "create"|"new"|"n")
