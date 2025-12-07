@@ -20,5 +20,4 @@ packages:
 - name: go-task/task@v3.45.5
 - name: junegunn/fzf@v0.67.0
 - name: nodejs/node@v25.2.1
-- name: atuinsh/atuin@v18.10.0
 - name: twpayne/chezmoi@v2.68.0

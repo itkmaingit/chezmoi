@@ -137,3 +137,21 @@ EOF
     esac
 }
 
+# === chezmoi sync monitoring ===
+CHEZ_LOG="$HOME/.cache/chezmoi-sync.log"
+CHEZ_ERR_FLAG="$HOME/.cache/chezmoi-sync-error.flag"
+
+if [[ -f "$CHEZ_LOG" ]]; then
+    # 直近ログに FAILED が含まれる場合
+    if grep -q "FAILED" "$CHEZ_LOG"; then
+        # 初回だけ通知
+        if [[ ! -f "$CHEZ_ERR_FLAG" ]]; then
+            echo "⚠️  chezmoi-sync failed. Check log: $CHEZ_LOG"
+            touch "$CHEZ_ERR_FLAG"
+        fi
+    else
+        # 成功してたらフラグ削除
+        rm -f "$CHEZ_ERR_FLAG"
+    fi
+fi
+

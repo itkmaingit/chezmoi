@@ -60,11 +60,6 @@ inline = '''
 eval "$(aqua completion zsh)"
 '''
 
-[plugins.atuin]
-inline = '''
-eval "$(atuin init zsh  --disable-up-arrow)"
-'''
-
 [plugins.zoxide]
 inline = '''
 eval "$(zoxide init zsh)"
