@@ -45,6 +45,8 @@
 	co = checkout
 	cancel = reset --soft HEAD^
 	fh = fetch
+	fph = push --force-with-lease
+	uph = push -u origin @
 [pull]
 	rebase = true
 [push]

@@ -23,3 +23,6 @@ packages:
 - name: twpayne/chezmoi@v2.68.0
 - name: x-motemen/ghq@v1.8.0
 - name: tldr-pages/tlrc@v1.12.0
+- name: aws/aws-cli@2.32.24
+- name: astral-sh/uv@0.9.18
+- name: Orange-OpenSource/hurl@7.1.0
