@@ -38,7 +38,7 @@ chezmoi apply
 
 ```bash
 sudo apt update
-sudo apt install zsh
+sudo apt install zsh alsa-utils ffmpeg libasound2-plugins libpulse0
 chsh -s $(which zsh)
 aqua i -a
 # (新規シェルの立ち上げ)
