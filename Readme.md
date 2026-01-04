@@ -52,6 +52,20 @@ crontab -e
 */15 * * * * bash $HOME/.local/share/chezmoi/scripts/chezmoi-sync.sh
 ```
 
+### Tailscaleの初期設定
+```
+# 1. systemd 有効化
+/etc/wsl.conf
+[boot]
+systemd=true
+
+# 2. tailscaleのインストール
+
+# 3. systemctlで有効化
+sudo systemctl enable --now tailscaled
+sudo tailscale up
+```
+
 ### その他のツール
 
 #### [Doppler CLI](https://docs.doppler.com/docs/install-cli)
