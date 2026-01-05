@@ -38,7 +38,7 @@ chezmoi apply
 
 ```bash
 sudo apt update
-sudo apt install zsh alsa-utils ffmpeg libasound2-plugins libpulse0
+sudo apt install zsh alsa-utils ffmpeg libasound2-plugins libpulse0 openssh-server
 chsh -s $(which zsh)
 aqua i -a
 # (新規シェルの立ち上げ)
@@ -65,6 +65,22 @@ systemd=true
 sudo systemctl enable --now tailscaled
 sudo tailscale up
 ```
+
+### SSHサーバー立ち上げ
+```
+sudo vi /etc/ssh/sshd_config
+Port 22
+PubkeyAuthentication yes
+PasswordAuthentication no
+
+vi ~/.ssh/authorized_keys
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIlTzjvdcJgLNMuaHHn2RX3nAKIRYqt8RFgN38Ftqe8E
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAssm0cUbty/FWVnzSiOAy2/1Xn6SnF0troHXemCRoqQ
+sudo chmod 600 ~/.ssh/authorized_keys
+
+sudo systemctl enable --now ssh
+```
+
 
 ### その他のツール
 
