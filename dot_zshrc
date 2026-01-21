@@ -16,9 +16,7 @@ abbr -S dr='direnv' > /dev/null
 abbr -S rel='source ~/.zshrc' > /dev/null
 abbr -S d='docker' > /dev/null
 abbr -S a='aqua' > /dev/null
-abbr -S dr='direnv' > /dev/null
 abbr -S c='chezmoi' > /dev/null
-abbr -S cl='claude' > /dev/null
 abbr -S --force cd='z' > /dev/null
 abbr -S update='bash ~/scripts/chezmoi-sync.sh' > /dev/null
 abbr -S --force  as='chezmoi re-add ~/.config/aquaproj-aqua/aqua.yaml' > /dev/null
@@ -72,34 +70,31 @@ repo() {
                 fi
             fi
             ;;
-	"get"|"g")
-    # Clone/get a new repository
-    if [[ -z "$2" ]]; then
-        # Interactive mode: show remote repositories via gh + fzf
-        local selected_repo
-        
-        # Get own repos and all org repos
-        local all_repos=$(
-            {
-                # Own repositories
-                gh repo list --limit 100 --json nameWithOwner --jq '.[].nameWithOwner'
-                
-                # Organization repositories
-                gh api user/orgs --jq '.[].login' | while read -r org; do
-                    gh repo list "$org" --limit 100 --json nameWithOwner --jq '.[].nameWithOwner'
-                done
-            } | sort -u
-        )
-        
-        selected_repo=$(echo "$all_repos" | fzf --height=50% --border --preview="gh repo view {} --json description,url,pushedAt --template '{{.description}}\n{{.url}}\nLast updated: {{.pushedAt}}'" --preview-window=down:5:wrap --prompt="Select repository to clone: ")
-        
-        if [[ -n "$selected_repo" ]]; then
-            ghq get -p "github.com/$selected_repo"
-        fi
-    else
-        ghq get -p "$2"
-    fi
-    ;;
+        "get"|"g")
+            # Clone/get a new repository
+            if [[ -z "$2" ]]; then
+                # Interactive mode: show remote repositories via gh + fzf
+                local selected_repo
+
+                # Get own repos and all org repos
+                local all_repos=$(
+                    {
+                        gh repo list --limit 100 --json nameWithOwner,isArchived --jq '.[] | select(.isArchived == false) | .nameWithOwner'
+                        gh api user/orgs --jq '.[].login' | while read -r org; do
+                            gh repo list "$org" --limit 100 --json nameWithOwner,isArchived --jq '.[] | select(.isArchived == false) | .nameWithOwner'
+                        done
+                    } | sort -u
+                )
+
+                selected_repo=$(echo "$all_repos" | fzf --height=50% --border --preview="gh repo view {} --json description,url,pushedAt --template '{{.description}}\n{{.url}}\nLast updated: {{.pushedAt}}'" --preview-window=down:5:wrap --prompt="Select repository to clone: ")
+
+                if [[ -n "$selected_repo" ]]; then
+                    ghq get -p "github.com/$selected_repo"
+                fi
+            else
+                ghq get -p "$2"
+            fi
+            ;;
         "create"|"new"|"n")
             # Create a new repository directory
             if [[ -z "$2" ]]; then
@@ -220,10 +215,3 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-
-export PNPM_HOME="/home/maeda-itsuki/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-export CIPHER_EMBEDDER="local"
