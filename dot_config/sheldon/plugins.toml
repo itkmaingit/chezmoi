@@ -64,15 +64,22 @@ eval "$(aqua completion zsh)"
 inline = '''
 eval "$(zoxide init zsh)"
 '''
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 [plugins.direnv]
 inline = '''
 eval "$(direnv hook zsh)"
 '''
+<<<<<<< Updated upstream
 [plugins.doppler]
 inline = '''
 eval "$(doppler completion)"
 '''
 
+=======
+>>>>>>> Stashed changes
 # ---- 高速 + 多機能な補完（recommended） ----
 [plugins.enhancd]
 github = "b4b4r07/enhancd"
